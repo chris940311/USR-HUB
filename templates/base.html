@@ -1,0 +1,84 @@
+{% load static %}
+{% comment "" %}
+    這個模板是基底模板，包含了村落介紹，fontawesome引入，並根據後端資料庫的內容進行標題，icon更新，並且製作了標題列及頁尾
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="zh-hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="水井村的歷史..." />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+              integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        {% if site_content.web_title %}
+            <title>{{ site_content.web_title }}</title>
+        {% else %}
+            <title>USR-Hub</title>
+        {% endif %}
+        {% if icon %}<link rel="icon" href="{{ MEDIA_URL }}{{ icon }}" type="image/x-icon" />{% endif %}
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="logo">{{ web_title }}</div>
+                <ul>
+                    <li>
+                        <a href="{% url 'detail' %}" id="detail">村落介紹</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'event' %}" id="activity-highlights">活動花絮</a>
+                    </li>
+                    <li>
+                        <a href="/monitoring" id="monitoring">漁/農監控</a>
+                    </li>
+                    <li>
+                        <a href="/usr-plan" id="usr-plan">USR計畫</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-contact">
+                    <h4>聯絡我們</h4>
+                    {% if site_content.email %}<p>Email: {{ site_content.email }}</p>{% endif %}
+                    {% if site_content.tel %}<p>電話: {{ site_content.tel }}</p>{% endif %}
+                </div>
+                <div class="footer-social">
+                    <h4>關注我們</h4>
+                    {% if site_content.facebook %}
+                        <a href="{{ site_content.facebook }}" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    {% endif %}
+                    {% if site_content.twitter %}
+                        <a href="{{ site_content.twitter }}" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    {% endif %}
+                    {% if site_content.instagram %}
+                        <a href="{{ site_content.instagram }}" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    {% endif %}
+                    {% if site_content.youtube %}
+                        <a href="{{ site_content.youtube }}" class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 {{site_content.web_title}} 版權所有.</p>
+            </div>
+        </footer>
+        <script src='{% static "js/base.js" %}'></script>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="detail">
+    <aside class="asides">
+        <div class="fixed-location">
+            <ul>
+                <h1>導覽列</h1>
+                {% for post_detail in post_details %}
+                <li>
+                    <a href="#post-{{ forloop.counter }}">{{ post_detail.post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </aside>
+    <div>
+        {% for post_detail in post_details %}
+        <section id="post-{{ forloop.counter }}">
+            <p class="title">{{ post_detail.post.title }}</p>
+            {% for content in post_detail.contents %}
+            <div class="paragraph">
+                {% if content.image %}
+                <div class="picture">
+                    <img src="{{ content.image.url }}" alt="{{ content.image_description }}" />
+                    <figcaption  style="color: {{ content.image_description_color }}">{{ content.image_description }}</figcaption>
+                </div>
+                {% endif %}
+                <p style="color: {{ content.subTitle_color }}">{{ content.subTitle }}</p>
+                <section>
+                    {{ content.text }}
+                </section>
+            </div>
+            {% endfor %}
+        </section>
+        {% endfor %}
+    </div>
+</div>
+<script src="{% static 'js/detail.js' %}"></script>
+{% endblock %}

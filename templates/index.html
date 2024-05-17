@@ -1,0 +1,54 @@
+{% load static %}
+{% comment "" %}
+    本模板是本網站的首頁，依據後端資料庫更新標題icon等內容，
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="zh-hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="這是有關水井村的網頁" />
+        <meta name="keywords" content="水井, 網頁, 景點,活動" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+              integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <title>{{ web_title }}</title>
+        {% if icon %}<link rel="icon" href="{{ MEDIA_URL }}{{ icon }}" type="image/x-icon" />{% endif %}
+    </head>
+    <body>
+        <!-- 關於背景圖片-->
+        <div class="background-img">
+            <img src="{{ MEDIA_URL }}{{ item.background_image }}" alt="背景圖片" />
+        </div>
+        <div class="shield">
+            <div class="introduce">
+                <section>
+                    {{ item.title1 }}
+                </section>
+                <a href="{% url 'detail' %}">了解更多 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="introduce">
+                <section>
+                    {{ item.title2 }}
+                </section>
+                <a href="{% url 'event' %}">了解更多 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="introduce">
+                <section>
+                    {{ item.title3 }}
+                </section>
+                <a href="">了解更多 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="introduce">
+                <section>
+                    {{ item.title4 }}
+                </section>
+                <a href="">了解更多 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </body>
+    <script src="{% static 'js/index.js' %}"></script>
+</html>

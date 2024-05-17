@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
+}
+body div.background-img {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999;
+}
+body div.background-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body div.shield {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+body div.shield div.introduce {
+  width: 60%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+body div.shield div.introduce section {
+  font-size: 36px;
+  color: #555;
+  margin-left: 20%;
+  transition: all 2s ease;
+  opacity: 0;
+  transform: translateY(-100px);
+}
+body div.shield div.introduce a {
+  color: #555;
+  text-decoration: none;
+  padding: 1rem;
+  border: 2px solid #555;
+  border-radius: 10px;
+  margin: 2rem 0;
+  margin-left: 20%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+body div.shield div.introduce a:hover {
+  transform: scale(1.1);
+  color: white;
+  background-color: #555;
+}/*# sourceMappingURL=style.css.map */
